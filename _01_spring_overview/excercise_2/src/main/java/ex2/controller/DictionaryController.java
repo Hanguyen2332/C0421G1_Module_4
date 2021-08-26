@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DictionaryController {
     @Autowired
-    IDictionaryService iDictionaryService;
+    private IDictionaryService iDictionaryService;
 
     @GetMapping("/translate")
     //Hien thi form translate:

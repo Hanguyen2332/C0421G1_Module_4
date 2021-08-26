@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class CondimentServiceImpl implements ICondimentService {
     @Autowired
-    ICondimentRepos iConvertRepos;
+    private ICondimentRepos iConvertRepos;
 
     @Override
     public List<String> showCondiments() {

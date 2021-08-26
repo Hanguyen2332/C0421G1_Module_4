@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DictionaryServiceImpl implements IDictionaryService{
     @Autowired
-    IDictionaryRepos iDictionaryRepos;
+    private IDictionaryRepos iDictionaryRepos;
     @Override
     public String translate(String key) {
         return iDictionaryRepos.translate(key);

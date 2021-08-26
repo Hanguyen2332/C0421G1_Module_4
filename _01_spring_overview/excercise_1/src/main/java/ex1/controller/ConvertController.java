@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/converter")
 public class ConvertController {
     @Autowired
-    IConvertService iConvertService;
+    private IConvertService iConvertService;
 
     //hien thi form
-    @GetMapping("/converter") // localhost8080/furama
+    @GetMapping({"/","","go"}) // localhost8080/furama
     public String convert() {
         return "index";
     }

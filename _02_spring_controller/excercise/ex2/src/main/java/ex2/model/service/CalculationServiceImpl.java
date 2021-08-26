@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class CalculationServiceImpl implements ICalculationService {
     @Autowired
-    ICalculationRepos calculationRepos;
+    private ICalculationRepos calculationRepos;
 
 
     @Override

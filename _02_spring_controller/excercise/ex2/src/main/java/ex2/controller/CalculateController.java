@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CalculateController {
     @Autowired
-    ICalculationService iCalculationService;
+    private ICalculationService iCalculationService;
 
     //hien thi form
     @GetMapping({"", "/calculate_form"})

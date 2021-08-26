@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 public class SandwichCondimentController {
     @Autowired
-    ICondimentService iConvertService;
+    private ICondimentService iConvertService;
 
     //hien thi form
     @GetMapping({"", "/condiment"})
