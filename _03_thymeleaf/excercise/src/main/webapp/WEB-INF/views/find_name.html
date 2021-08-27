@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+    <meta charset="UTF-8">
+    <title>Edit Test</title>
+    <!--    <style>-->
+    <!--        form {-->
+    <!--            width: 40%;-->
+    <!--        }-->
+    <!--    </style>-->
+    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">-->
+</head>
+<body>
+
+
+<div class="container mt-3">
+    <div>
+        <h3>Edit Product</h3>
+        <a th:href="@{/product}">Back to product list</a>
+    </div>
+
+    <form action="/product/search" method="post" style="width: 40%">
+        <!-- Vertical -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input name="name" id="name" th:value="${name}" class="form-control" placeholder="Search by Name"/>
+            <button type="submit" class="btn btn-primary mt-3">Search by name</button>
+        </div>
+    </form>
+
+    <!--    ket qua: -->
+    <div th:if="${productList.isEmpty()}" style="color:red;">This name not exists!</div>
+    <div th:if="${not productList.isEmpty()}">
+<!-- <div th:if="#{!productList.isEmpty()}">-->
+<!-- <div th:unless="${productList.isEmpty()}">-->
+
+                <table id="customers">
+                    <thead>
+                    <tr>
+                        <th>Num</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Producer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="row,rowStat : ${productList}">
+                        <td th:text="${rowStat.count}"></td>
+                        <td th:text="${row.id}"></td>
+                        <td>
+                            <a th:href="@{/product/{id}/view(id=${row.id})}">
+                                <p th:text="${row.name}"></p>
+                            </a>
+                        </td>
+
+                        <td th:text="${row.price}"></td>
+                        <td th:text="${row.description}"></td>
+                        <td th:text="${row.producer}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>-->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>-->
+        <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+
+</body>
+</html>

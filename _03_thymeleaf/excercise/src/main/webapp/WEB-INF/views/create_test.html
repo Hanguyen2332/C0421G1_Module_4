@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Test</title>
+    <style>
+        form {
+            width: 40%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container mt-3">
+    <div>
+        <h3>Add Customer</h3>
+        <a th:href="@{/product}">Back to product list</a>
+    </div>
+
+    <form th:action="@{/product/save}" th:object="${product}" method="post">
+
+        <!-- Vertical -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input th:field="*{name}" id="name" class="form-control" placeholder="Name"/>
+            <label for="Price">Price</label>
+            <input id="Price" th:field="*{price}" class="form-control" placeholder="Price">
+            <label for="Description">Description</label>
+            <input th:field="*{description}" id="Description" class="form-control" placeholder="Description">
+            <label for="producer">Producer</label>
+            <input th:field="*{producer}" id="producer" class="form-control" placeholder="Producer">
+
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
+        </div>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
