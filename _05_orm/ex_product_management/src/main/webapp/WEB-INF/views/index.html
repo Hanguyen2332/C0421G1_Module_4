@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3 style="color: white">Product Management</h3>
+<div>
+    <button class="btn btn-success">
+        <a th:href="@{/product/create}">
+            Add new product
+        </a>
+    </button>
+    <button class="btn btn-success">
+        <a th:href="@{/product/find-name}">
+            Find By Name
+        </a>
+    </button>
+<!--    <p th:if="${message}" th:text="${message}" style="color: red"></p>-->
+</div>
+<!--Thông báo: nếu list rỗng-->
+<div th:if="${productList.isEmpty()}" >
+    <h3 style="color: red">List is Empty!</h3>
+</div>
+
+<div th:unless="${productList.isEmpty()}">
+    <table id="customers">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Producer</th>
+            <th colspan="2">Action</th>
+            <!--        <th>View</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row,rowStat : ${productList}">
+            <td th:text="${rowStat.count}"></td>
+            <td th:text="${row.id}"></td>
+            <td>
+                <a th:href="@{/product/{id}/view(id=${row.id})}">
+                    <p th:text="${row.name}"></p>
+                </a>
+            </td>
+
+            <td th:text="${row.price}"></td>
+            <td th:text="${row.description}"></td>
+            <td th:text="${row.producer}"></td>
+            <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">edit</a></td>
+            <td><a th:href="@{/product/{id}/delete(id=${row.getId()})}">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
