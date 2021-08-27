@@ -4,14 +4,17 @@ import com.codegym.model.bean.Product;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
+@Transactional  // update/create/...
 public class ProductReposImpl implements IProductRepos {
     @PersistenceContext  // --> framework tạo object cho EntityManager?
-            EntityManager em;
+           private EntityManager em;
 
     //update or create:
     @Override
@@ -27,9 +30,9 @@ public class ProductReposImpl implements IProductRepos {
     @Override
     public List<Product> findAll() {
         //cau lenh query:
-        String selectSql = "SELECT p FROM Product AS p";
+        String selectSql = "SELECT p FROM Product p";
 
-        TypedQuery<Product> query = ConnectionUtil.entityManager.createQuery(selectSql, Product.class);
+        TypedQuery<Product> query = em.createQuery(selectSql, Product.class);
 
         return query.getResultList();
     }
@@ -37,34 +40,35 @@ public class ProductReposImpl implements IProductRepos {
     //ham bổ trợ:
     @Override
     public Product findById(Integer id) {
-        Product product = null;
 
         String selectSql = "SELECT p FROM Product AS p WHERE p.id=:id";
-        TypedQuery<Product> query = ConnectionUtil.entityManager.createQuery(selectSql, Product.class);
+        TypedQuery<Product> query = em.createQuery(selectSql, Product.class);
         query.setParameter("id", id);
-        product = query.getSingleResult();
-
-        return  product;
+     try{
+         return query.getSingleResult();
+     }catch (NoResultException e) {
+         return null;
+     }
     }
 
     //delete:
     @Override
     public void delete(Integer id) {
-        if (id!=null) {
-            em.remove(id);
+        Product product = findById(id);
+        if (findById(id)!=null) {
+            em.remove(product);   // xóa - tham số: object
         }
     }
 
     @Override
     public Product findByName(String nameChar) {
-//        TypedQuery<Product> combinedQuery = queryBuilder
-//                .bool().must(queryBuilder.phrase()
-//                                .onField("productName).sentence("samsung galaxy s8")
-//                                        .createQuery());
         String selectSql = "SELECT p FROM Product AS p WHERE p.name=:name";
-        TypedQuery<Product> query = ConnectionUtil.entityManager.createQuery(selectSql, Product.class);
-
-
-        return query.getSingleResult();
+        TypedQuery<Product> query = em.createQuery(selectSql, Product.class);
+        try {
+            query.setParameter("name",nameChar);  //set giá trị cho biến
+            return query.getSingleResult();
+        }catch (NoResultException e) {   //NoResultException: khi KHÔNG có kết quả trả về
+            return null;
+        }
     }
 }

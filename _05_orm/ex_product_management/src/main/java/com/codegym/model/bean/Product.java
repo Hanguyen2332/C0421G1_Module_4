@@ -3,6 +3,7 @@ package com.codegym.model.bean;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,11 +13,11 @@ public class Product {
     private String description;
     private String producer;
 
-    public Integer getId() {
+    public Integer  getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -52,7 +53,7 @@ public class Product {
         this.producer = producer;
     }
 
-    public Product(int id, String name, double price, String description, String producer) {
+    public Product(Integer id, String name, double price, String description, String producer) {
         this.id = id;
         this.name = name;
         this.price = price;

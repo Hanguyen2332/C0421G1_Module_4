@@ -50,12 +50,11 @@ public class ProductController {
                        RedirectAttributes redirectAttribute) {
         iProductService.save(product);
         redirectAttribute.addFlashAttribute("message", "Create new product successfully!");
-        return "redirect:product";
+        return "redirect:/product";
     }
-//
-
+//edit:
     @GetMapping("{id}/edit")
-    public ModelAndView editForm(@PathVariable int id) {
+    public ModelAndView editForm(@PathVariable Integer id) {
         return new ModelAndView("/edit_test", "product", iProductService.findById(id));
     }
 
@@ -65,27 +64,27 @@ public class ProductController {
 
         iProductService.save(product);
         redirectAttributes.addFlashAttribute("message", "Edit product successfully!");
-        return "redirect:product";
+        return "redirect:/product";
     }
-//
+
     //delete:
     @GetMapping("{id}/delete")
-    public ModelAndView deleteForm(@PathVariable int id) {
+    public ModelAndView deleteForm(@PathVariable Integer id) {
         return new ModelAndView("/delete_test", "product", iProductService.findById(id));
     }
-//
+
     @PostMapping("/delete")
     public String delete(@ModelAttribute Product product,
                          RedirectAttributes redirectAttributes) {
         iProductService.delete(product.getId());
         redirectAttributes.addFlashAttribute("message", "Delete product successfully!");
-        return "redirect:product";
+        return "redirect:/product";
     }
 
-//
-//
+
+// show detail
     @GetMapping("/{id}/view")
-    public String view(@PathVariable int id, Model model) {
+    public String view(@PathVariable Integer id, Model model) {
         model.addAttribute("product", iProductService.findById(id));
         return "/view";
     }

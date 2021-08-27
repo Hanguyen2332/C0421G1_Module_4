@@ -24,7 +24,7 @@
     </form>
 
     <!--    ket qua: -->
-    <div th:if="${product==null}" style="color:red;">This product not exists!</div>
+    <div th:if="${product == null}" style="color:red;">This product not exists!</div>
     <div th:if="${product != null}">
 <!-- <div th:if="#{!productList.isEmpty()}">-->
 <!-- <div th:unless="${productList.isEmpty()}">-->
@@ -42,17 +42,9 @@
                     <tbody>
                     <tr>
                         <td th:text="${product.id}"></td>
-                    </tr>
-                    <tr>
                         <td th:text="${product.name}"></td>
-                    </tr>
-                    <tr>
                         <td th:text="${product.price}"></td>
-                    </tr>
-                    <tr>
                         <td th:text="${product.description}"></td>
-                    </tr>
-                    <tr>
                         <td th:text="${product.producer}"></td>
                     </tr>
                     </tbody>

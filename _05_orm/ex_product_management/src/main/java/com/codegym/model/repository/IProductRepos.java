@@ -11,7 +11,7 @@ public interface IProductRepos {
     List<Product> findAll();
 
     ////    void update(Product product, Integer id);
-    void delete(Integer id);
+    void delete(Integer  id);
 
     Product findByName(String name);
 
