@@ -24,10 +24,9 @@
     </form>
 
     <!--    ket qua: -->
-    <div th:if="${product == null}" style="color:red;">This product not exists!</div>
-    <div th:if="${product != null}">
+    <div th:if="${productList.isEmpty()}" style="color:red;">This product not exists!</div>
+    <div th:unless="${productList.isEmpty()}">
 <!-- <div th:if="#{!productList.isEmpty()}">-->
-<!-- <div th:unless="${productList.isEmpty()}">-->
 
                 <table id="customers">
                     <thead>
@@ -40,7 +39,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+
+                    <tr th:each="product : ${productList}">
+<!--                        <td th:text="${product.id}"></td>-->
                         <td th:text="${product.id}"></td>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
@@ -51,9 +52,9 @@
                 </table>
             </div>
         </div>
-        <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>-->
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>-->
-        <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

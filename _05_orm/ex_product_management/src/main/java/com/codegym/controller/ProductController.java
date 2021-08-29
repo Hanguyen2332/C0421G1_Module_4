@@ -23,6 +23,7 @@ public class ProductController {
 
         List<Product> productList = iProductService.findAll();
         model.addAttribute("productList", productList);
+        model.addAttribute("product", new Product());
         return "/index";
     }
 
@@ -34,9 +35,9 @@ public class ProductController {
     @PostMapping("/search")
     public String findByName(@RequestParam String name, Model model) {
 
-        Product product = iProductService.findByName(name);
+        List<Product> productList = iProductService.findByName(name);
         model.addAttribute("name",name);
-        model.addAttribute("product", product);
+        model.addAttribute("productList", productList);
         return "/find_name";
     }
 //create
