@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<!--Thong bao-->
+<div th:if="${blogList.isEmpty()}">
+    <p style="color: red">Bạn chưa có bài viết nào. Nhấn Create để tạo bài đăng đầu tiên</p>
+</div>
+<!--nút create-->
+<a class="btn btn-primary" href="@{blog/create}" role="button">Create new Blog</a>
+
+<div th:unless="${blogList.isEmpty()}">
+    <table class="table">
+        <thead>
+        <tr>
+            <!--            <th scope="col">#</th>-->
+            <th scope="col">No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Create Date</th>
+            <th scope="col" colspan="3">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blogObj, loopStatus: ${blogList}">
+            <td th:text="${loopStatus.count}"></td>
+            <td th:text="${blogObj.id}"></td>
+            <td th:text="${blogObj.title}"></td>
+            <td th:text="${blogObj.createDate}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/view/__${blogObj.id}__}" role="button">View</a>
+            <td>
+                <a class="btn btn-primary" th:href="@{/edit/{id}(id=${blogObj.id})}" role="button">Edit</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/delete/{id}(id=${blogObj.id})}" role="button">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

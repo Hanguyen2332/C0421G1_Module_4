@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Blog</title>
+    <style>
+        form {
+            width: 40%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container mt-3">
+    <div>
+        <h3>View Blog</h3>
+        <a th:href="@{blog}">Back to home page</a>
+    </div>
+<!--    nut edit-->
+    <a class="btn btn-primary" th:href="@{/edit/{id}(id=${blogObj.id})}" role="button">Edit</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Create Date</th>
+            <th scope="col">Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${blogObj.id}"></td>
+            <td th:text="${blogObj.title}"></td>
+            <td th:text="${blogObj.createDate}"></td>
+            <td>
+                <div th:text="${blogObj.content}"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

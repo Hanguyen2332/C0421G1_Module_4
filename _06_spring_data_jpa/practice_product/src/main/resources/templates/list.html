@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+
+
+
+<form action="/search">
+    <input type="text" name="name">
+</form>
+
+<p>
+    <a th:href="@{/create}">Add product</a>
+</p>
+
+
+
+<div th:if="${List.isEmpty()}">Danh sách đang rỗng</div>
+
+<div th:unless="${List.isEmpty()}">
+
+    <p>Danh sách sản phẩm</p>
+
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Description</td>
+        <td>Producer</td>
+        <td colspan="2">Action</td>
+
+    </tr>
+    <tr th:each="doiTuong:${List}">
+        <td th:text="${doiTuong.id}"></td>
+        <td th:text="${doiTuong.name}"></td>
+        <td th:text="${doiTuong.price}"></td>
+        <td th:text="${doiTuong.des}"></td>
+        <td th:text="${doiTuong.producer}"></td>
+        <td >
+            <a th:href="@{/delete/{id}(id=${doiTuong.id})}">delete</a>
+        </td>
+        <td>
+            <a th:href="@{/view/{id}(id=${doiTuong.id})}">detail</a>
+        </td>
+
+    </tr>
+
+</table>
+</div>
+
+
+<div th:if=""
+
+</body>
+</html>
