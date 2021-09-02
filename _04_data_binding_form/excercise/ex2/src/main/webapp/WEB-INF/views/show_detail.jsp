@@ -147,9 +147,15 @@
             <%--           Lịch sử phơi nhiễm--%>
             <div class="form-check form-check-inline" style="display: block">
                 <label class="col-md-12">Lịch sử phơi nhiễm: Trong vòng 14 ngày qua, Anh chị có</label>
-                <c:forEach items="${object.exposureHistory}" var="item">
-                    <span>${item}</span>
-                </c:forEach>
+                <c:if test='${(object.exposureHistory).equals("")}'>
+                    Không
+                </c:if>
+                <c:if test='${!(object.exposureHistory).equals("")}'>
+                    <c:forEach items="${object.exposureHistory}" var="item">
+                        <span>${item}</span>
+                    </c:forEach>
+                </c:if>
+
 <%--                <form:checkboxes path="exposureHistory" items="${exposureHistory}"/>--%>
             </div>
 

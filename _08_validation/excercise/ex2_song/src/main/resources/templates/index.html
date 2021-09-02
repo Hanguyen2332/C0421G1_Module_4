@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Song List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<!--Thong bao-->
+<!--<div >-->
+<!--    <h2 style="color: red">Blog Chiec Vac Lung say hi!</h2>-->
+<!--</div>-->
+
+<div th:if="${songList.isEmpty()}">
+    <p style="color: red">Bạn chưa có bài viết nào. Nhấn Create để tạo mới</p>
+</div>
+<!--nút create-->
+<a class="btn btn-primary" th:href="@{/create}" role="button">Create new Song</a>
+<p th:if="${message}" th:text="${message}" style="color: red"></p>
+
+<!--nút Search By Category-->
+<div th:unless="${songList.isEmpty()}">
+    <table class="table">
+        <thead>
+        <tr>
+            <!--            <th scope="col">#</th>-->
+            <th scope="col">No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Singer</th>
+            <th scope="col">Music Genre</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="songObj, loopStatus: ${songList}">
+            <td th:text="${loopStatus.count}"></td>
+            <td th:text="${songObj.id}"></td>
+            <td th:text="${songObj.name}"></td>
+            <td th:text="${songObj.singer}"></td>
+            <td th:text="${songObj.musicGenre}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/edit/{id}(id=${songObj.id})}" role="button">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

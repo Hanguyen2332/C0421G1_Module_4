@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+    <style>
+        form {
+            width: 40%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<!--<div class="container mt-3">-->
+<div>
+    <h3>User Information</h3>
+</div>
+<div>
+    <p style="color: red">Create new User successfully!</p>
+</div>
+
+<table class="table" style="width: 40%">
+    <tr>
+        <td>First Name</td>
+        <td th:text="${userDto.firstName}"></td>
+    </tr>
+
+    <tr>
+        <td>Last Name</td>
+        <td th:text="${userDto.lastName}"></td>
+    </tr>
+
+    <tr>
+        <td>Phone Number</td>
+        <td th:text="${userDto.phoneNumber}"></td>
+    </tr>
+
+    <tr>
+        <td>Age</td>
+        <td th:text="${userDto.age}"></td>
+    </tr>
+
+    <tr>
+        <td>Email</td>
+        <td th:text="${userDto.email}"></td>
+    </tr>
+</table>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

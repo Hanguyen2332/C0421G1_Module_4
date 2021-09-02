@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/create-customer}">
+        Add new customer
+    </a>
+</p>
+<form action="/search" method="get">
+    <input type="text" name="search-name" style="width:200px">
+    <input type="text" name="search-price1" style="width:200px">
+    <input type="text" name="search-price2" style="width:200px">
+    <button type="submit" value="search">Search</button>
+</form>
+<div class="notify">
+    <!--/*@thymesVar id="success" type="com"*/-->
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+<table id = "products">
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer ,rowStat : ${customers}">
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td><a th:href="@{/edit/{id}(id=${customer.id})}">edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${customer.id})}">delete</a></td>
+        <td><a th:href="@{/view/{id}(id=${customer.id})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+    <style>
+        form {
+            width: 40%;
+        }
+        div>div{
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container mt-3">
+
+        <h3>Create User</h3>
+
+
+    <form th:action="@{/create}" th:object="${userDto}" method="post">
+
+        <!-- Vertical -->
+        <div class="form-group">
+<!--            first name-->
+            <label for="name">First Name</label>
+            <input th:field="*{firstName}" id="name" class="form-control" />
+            <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+
+<!--            Last name-->
+            <label for="lastName">Last Name</label>
+            <input id="lastName" th:field="*{lastName}" class="form-control" />
+            <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+<!--            Phone number-->
+            <label for="phoneNumber">Phone Number</label>
+            <input class="form-control" th:field="*{phoneNumber}" id="phoneNumber"/>
+            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+
+            <!--            age-->
+            <label for="age">Age</label>
+            <input class="form-control" th:field="*{age}" id="age"/>
+            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+
+            <!--            email-->
+            <label for="email">Email</label>
+            <input class="form-control" th:field="*{email}" id="email" placeholder="VD: email@gmail.com"/>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
+        </div>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
