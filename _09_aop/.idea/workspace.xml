@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="044d6cc4-903b-4f00-8f22-f9190ef35a18" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/model/repository/BlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/model/repository/BlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/model/service/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/model/service/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/model/service/IBlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/java/com/practice/model/service/IBlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_spring_data_jpa/excercise_update/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/java/com/practice/PracticeApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/java/com/practice/controller/BlogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/java/com/practice/controller/CategoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/java/com/practice/model/repository/ICustomerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/java/com/practice/model/service/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/java/com/practice/model/service/ICustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/category_create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/category_delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/category_edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/category_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/find_by_category.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_1/src/test/java/com/practice/PracticeApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/PracticeApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/controller/BlogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/controller/CategoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/bean/Blog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/bean/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/repository/BlogRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/repository/CategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/service/BlogServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/service/CategoryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/service/IBlogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/java/com/practice/model/service/ICategoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/category_create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/category_delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/category_edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/category_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/find_by_category.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_spring_data_jpa/practice/practice_2/src/test/java/com/practice/PracticeApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_08_validation/excercise/ex1_user/src/main/java/com/practice/model/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_08_validation/excercise/ex1_user/src/main/java/com/practice/model/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_08_validation/excercise/ex1_user/src/main/java/com/practice/model/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_08_validation/excercise/ex1_user/src/main/java/com/practice/model/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_08_validation/excercise/ex1_user/src/main/resources/ValidatorMessage.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../_08_validation/excercise/ex1_user/src/main/resources/ValidatorMessage.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_08_validation/excercise/ex2_song/src/main/resources/ValidatorMessage.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../_08_validation/excercise/ex2_song/src/main/resources/ValidatorMessage.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management _2/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management _2/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/service/impl/CustomerServiceImplWithSpringData.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management _2/src/main/java/cg/wbd/grandemonstration/service/impl/CustomerServiceImplWithSpringData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management_1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management_1/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/service/impl/CustomerServiceImplWithSpringData.java" beforeDir="false" afterPath="$PROJECT_DIR$/practice/customer-management_1/src/main/java/cg/wbd/grandemonstration/service/impl/CustomerServiceImplWithSpringData.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1xo9fKiWpQYzpdSodUOTDbufW58" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="044d6cc4-903b-4f00-8f22-f9190ef35a18" name="Default Changelist" comment="" />
+      <created>1631010676690</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631010676690</updated>
+      <workItem from="1631010682778" duration="15000" />
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mượn sách</title>
+    <style>
+        form {
+            width: 40%;
+        }
+        div>div{
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container mt-3">
+    <a class="btn btn-light" th:href="@{/}" role="button">Quay lại trang chủ</a>
+    <h3 style="color: blue">Mượn sách</h3>
+
+    <form th:action="@{/borrow}" th:object="${codeObj}" method="post">
+        <div class="form-group">
+            <label for="bookName">Tên sách:</label>
+            <div th:text="${codeObj.book.bookName}" id="bookName" class="form-control"></div>
+            <input th:field="*{book}" class="form-control" type="hidden"/>
+
+            <label for="code">Mã mượn sách:</label>
+            <input  th:field="*{code}" id="code" class="form-control" readonly/>
+
+            <button type="submit" class="btn btn-primary mt-3">Mượn</button>
+        </div>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
