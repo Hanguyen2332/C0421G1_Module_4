@@ -7,11 +7,12 @@
 </head>
 <body>
 <div class="container-fluid">
+    <a class="btn btn-info" th:href="@{/shop}" role="button">Home</a>
+    <h3 class="my-2" style="color: #204fdc">Giỏ hàng của bạn</h3>
+    <h4 th:if="${cartList.isEmpty()}" style="color: red">Bạn hiện chưa có sản phẩm nào trong giỏ hàng!</h4>
+
     <div class="row my-2">
-        <a class="btn btn-info" th:href="@{/shop}" role="button">Home</a>
-        <h3 class="my-2" style="color: #20dc20">Giỏ hàng của bạn</h3>
         <!--            thông báo : nếu list trống-->
-        <h4 th:if="${cartList.isEmpty()}" style="color: red">Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h4>
         <!--         ngược lại-->
         <div class="col-md-12" th:unless="${cartList.isEmpty()}">
             <table class="table">
@@ -33,10 +34,10 @@
                     <td th:text="${entry.key.name}"></td>
                     <td th:text="${entry.key.price}"></td>
                     <!--                        update (tăng/giảm SL)-->
-                    <td th:text="${entry.value}">
-                        <a th:href="@{/cart/update/__${entry.key.id}__(action='add')}">+</a>
-                        <span th:text="${entry.value}"></span>
-                        <a th:href="@{/cart/update/__${entry.key.id}__(action='sub')}">-</a>
+                    <td>
+                        <a class="btn btn-primary" role="button" th:href="@{/cart/update/__${entry.key.id}__(action='add')}">+</a>
+                        <button class="btn btn-primary" ><span th:text="${entry.value}"></span></button>
+                        <a class="btn btn-primary" role="button" th:href="@{/cart/update/__${entry.key.id}__(action='sub')}">-</a>
                     </td>
                     <td>
                         <a class="btn btn-primary" th:href="@{/cart/view/{id}(id=${entry.key.id})}"
@@ -47,7 +48,7 @@
                         <!-- lam sao de hien popup?-->
                     </td>
                 </tr>
-                <tr>
+                <tr style="color: red;font-weight: bold">
                     <td>Tổng Tiền:</td>
                     <td colspan="4" style="text-align: right" th:text="${sumPrice}"></td>
                 </tr>

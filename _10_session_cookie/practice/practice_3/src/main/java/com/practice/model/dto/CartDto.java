@@ -30,13 +30,17 @@ public class CartDto {
     //chỉnh sửa giỏ hàng: giảm  (SL)
     public void subCart(ProductDto productDto) {
         if (this.productMap.containsKey(productDto)) {
-            productMap.put(productDto, productMap.get(productDto) - 1);
+            Integer value = productMap.get(productDto);
+            if (value == 0) {
+                productMap.remove(productDto);
+            }else {
+                productMap.put(productDto, productMap.get(productDto) - 1);
+            }
         }
     }
 
     //findById:
     public Optional<ProductDto> findById(Long id) {
-//        Set<ProductDto> productMap = getProductMap().keySet();
         Optional<ProductDto> productDto = null;
         for (ProductDto item : this.productMap.keySet()) {
             if (item.getId().equals(id)) {

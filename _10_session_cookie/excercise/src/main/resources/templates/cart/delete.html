@@ -7,30 +7,37 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row my-2">
-<!--        quay lại giỏ hàng-->
-        <a class="btn btn-info" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
+    <!--        quay lại giỏ hàng-->
+    <a class="btn btn-info" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
 
+    <div class="row my-2">
         <form action="/cart/delete" th:object="${productObj}" method="post">
+            <input type="hidden" th:field="*{id}"/>
             <table class="table">
-                <thead class="bg-info">
+<!--                <thead class="bg-info">-->
+<!--                <tr>-->
+<!--                    <th scope="col">Product name</th>-->
+<!--                    <td th:text="${productObj.name}"></td>-->
+<!--                </tr>-->
                 <tr>
-                    <th scope="col">Product name</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td th:text="${productObj.name}"></td>
-                    <td>
+                    <td rowspan="">
                         <img th:src="@{${productObj.image}}" style="width: 40px;height: 40px">
                     </td>
+
+                    <td th:text="${productObj.name}"></td>
                     <td th:text="${productObj.price}"></td>
                 </tr>
-                </tbody>
+
+<!--                    <th scope="col">Price</th>-->
+
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+
+<!--                </tr>-->
+<!--                </tbody>-->
             </table>
-            <button class="btn btn-info" type="submit" role="button">Xóa</button>
+            <button class="btn btn-danger" type="submit" role="button" style="margin-left: 50%">Xóa</button>
 
         </form>
 

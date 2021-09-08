@@ -30,12 +30,12 @@ public class ProductController {
     public ModelAndView showList() {
         return new ModelAndView("list", "productList", iProductService.findAll());
     }
-
-    // Chưa viết code HTML
-    @GetMapping("/detail/{id}")
-    public ModelAndView showDetail(@PathVariable Long id) {
-        return new ModelAndView("detail", "productObj", iProductService.finById(id).get());
-    }
+//
+//    // Chưa viết code HTML
+//    @GetMapping("/detail/{id}")
+//    public ModelAndView showDetail(@PathVariable Long id) {
+//        return new ModelAndView("detail", "productObj", iProductService.finById(id).get());
+//    }
 
     //them gio hang:
     @GetMapping("/add_cart/{id}")
