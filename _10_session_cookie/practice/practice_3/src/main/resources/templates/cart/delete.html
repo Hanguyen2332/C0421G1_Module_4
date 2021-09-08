@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row my-2">
+<!--        quay lại giỏ hàng-->
+        <a class="btn btn-info" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
+
+        <form action="/cart/delete" th:object="${productObj}" method="post">
+            <table class="table">
+                <thead class="bg-info">
+                <tr>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${productObj.name}"></td>
+                    <td>
+                        <img th:src="@{${productObj.image}}" style="width: 40px;height: 40px">
+                    </td>
+                    <td th:text="${productObj.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-info" type="submit" role="button">Xóa</button>
+
+        </form>
+
+    </div>
+</div>
+<!--        tong tien-->
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
