@@ -49,8 +49,9 @@ public class ProductController {
             BeanUtils.copyProperties(productOptional.get(), productDto);  //Kiểu data từ DB: Product, kiểu đối tượng cần lưu map: ProductDto -->copy
             cart.addCart(productDto);  //lưu map
             redirectAttributes.addFlashAttribute("message", "Đã thêm " + productDto.getName() + "vào giỏ hàng");
-//            System.out.println("add cart: +1");
         }
+
         return "redirect:/shop";
+
     }
 }

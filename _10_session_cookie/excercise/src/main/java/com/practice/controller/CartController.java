@@ -6,12 +6,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
 @Controller
 @RequestMapping("cart")
 public class CartController {
+
+    //thanh toán (xóa giỏ hàng):
+    @GetMapping({"/payment"})
+    public ModelAndView payment(@SessionAttribute CartDto cart) {
+        cart.getProductMap().clear();
+
+        ModelAndView mav = new ModelAndView("cart/payment");
+        mav.addObject("message","Bạn đã hoàn thành thanh toán");
+
+        return mav;
+    }
+
 
     //xem gio hang:
     @GetMapping({"", "/view_cart"})

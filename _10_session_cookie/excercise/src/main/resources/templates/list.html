@@ -7,19 +7,19 @@
 </head>
 <body>
 <!--header-->
-<div class="container-fluid">
+<div class="container-fluid px-0">
     <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
+        <div class="container-fluid ">
             <a class="navbar-brand" style="margin-left: 30%;color: red">HOA TƯƠI KHÔNG TƯỚI</a>
             <div class="d-flex">
-                <a class="btn btn-primary" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
+                <a class="btn btn-warning" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
             </div>
         </div>
     </nav>
 
-    <div class="row">
+    <div class="row px-3">
         <p th:if="${message}" th:text="${message}" style="color: red"></p>
-        <div class="col-md-9">
+<!--        <div class="col-md-9">-->
             <table class="table">
                 <thead>
                 <tr>
@@ -38,7 +38,7 @@
                     <td th:text="${productObj.name}"></td>
                     <td>
                         <a th:href="@{/shop/detail/{id}(id=${productObj.id})}">
-                            <img th:src="@{${productObj.image}}" style="width: 40px;height: 40px">
+                            <img th:src="@{${productObj.image}}" style="width: 240px;height: 240px">
                         </a>
                     </td>
                     <td th:text="${productObj.price}"></td>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-</div>
+<!--</div>-->
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

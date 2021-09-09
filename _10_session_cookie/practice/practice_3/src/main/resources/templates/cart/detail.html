@@ -6,13 +6,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row my-2">
-        <a class="btn btn-info" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
-        <fieldset>
-            <legend>
-                <h3 class="mt-2">Chi tiết sản phẩm</h3>
-            </legend>
+<div class="container-fluid me-0">
+    <div class="row my-2 me-0 pe-0">
+        <a class="btn btn-info my-2" th:href="@{/cart/view_cart}" role="button">Giỏ hàng</a>
+
             <table class="table">
                 <thead class="bg-info">
                 <tr>
@@ -26,14 +23,13 @@
                 <tr>
                 <td th:text="${productObj.name}"></td>
                     <td>
-                        <img th:src="@{${productObj.image}}" style="width: 40px;height: 40px">
+                        <img th:src="@{${productObj.image}}" style="width: 240px;height: 240px">
                     </td>
                     <td th:text="${productObj.price}"></td>
                     <td th:text="${productObj.description}"></td>
                 </tr>
                 </tbody>
             </table>
-        </fieldset>
     </div>
 </div>
 <!--        tong tien-->

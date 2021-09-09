@@ -41,7 +41,7 @@ public class CartDto {
 
     //findById:
     public Optional<ProductDto> findById(Long id) {
-        Optional<ProductDto> productDto = null;
+        Optional<ProductDto> productDto = Optional.empty();
         for (ProductDto item : this.productMap.keySet()) {
             if (item.getId().equals(id)) {
                 productDto = Optional.of(item);
