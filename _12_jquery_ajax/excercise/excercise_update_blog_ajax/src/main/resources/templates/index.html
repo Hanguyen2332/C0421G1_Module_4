@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<!--form-->
+<form style="width: 30%;margin-top: 5px; display: inline-block">
+    <div>
+        <input id="keyword" class="form-control" placeholder="Enter keyword"/>
+        <button type="submit" class="btn btn-primary my-3">Search by keyword</button>
+    </div>
+
+</form>
+<!--hien thi ket qua-->
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">No</th>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Create Date</th>
+        <th scope="col">Content</th>
+        <th scope="col">Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<button id="viewMore" class="btn btn-primary mt-3">View more</button>
+
+<!--code js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+<!--<script src="jquery/jquery-3.5.1.min.js"></script>-->
+<!--<script src="jquery/popper.min.js"></script>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //hien thi list theo page :
+        //page đầu --> pageNumber = 0:
+        let page = 0
+
+        $.ajax({
+            url: "http://localhost:8080/v1/blog/api?page=" + page,
+            type: "GET",
+
+            success: function (data) {
+                // let resultContent = data.content;
+                let blogList = "";
+                for (let i = 0; i < data.length; i++) {
+                    blogList += "<tr>";
+                    blogList += "<td>" + (i + 1) + "</td>";
+                    blogList += "<td>" + data[i].id + "</td>";
+                    blogList += "<td>" + data[i].title + "</td>";
+                    blogList += "<td>" + data[i].createDate + "</td>";
+                    blogList += "<td>" + data[i].content + "</td>";
+                    category
+                    blogList += "<td>" + data[i].category.name + "</td>";
+                    blogList += "</tr>";
+                }
+                $("table").append(blogList);
+            },
+            //xử lý trường hợp lỗi
+            error: function (errorInfor) {
+                console.log("Error: " + errorInfor);
+            }
+        });
+
+        //khi nhấn nút 'xem thêm:
+        $('#viewMore').click(function () {
+            page++;  //tăng page lên 1  ==> page = 1
+            $.ajax({
+                url: "http://localhost:8080/v1/blog/api?page=" + page,  //gửi request --> web service
+                type: "GET",
+
+                success: function (data) {
+                    //nếu data = empty--> xử lý ntn?
+                    if (data.length === 0) {
+
+                    }
+
+                    let blogList = "";
+                    for (let i = 0; i < data.length; i++) {
+                        blogList += "<tr>";
+                        blogList += "<td>" + (i + 1) + "</td>";
+                        blogList += "<td>" + data[i].id + "</td>";
+                        blogList += "<td>" + data[i].title + "</td>";
+                        blogList += "<td>" + data[i].createDate + "</td>";
+                        blogList += "<td>" + data[i].content + "</td>";
+                        category
+                        blogList += "<td>" + data[i].category.name + "</td>";
+                        blogList += "</tr>";
+                    }
+                    $("table").append(blogList);
+                },
+                //nếu xảy ra lỗi
+                error: function (data) {
+                    console.log(data.content)
+                },
+            });
+        })
+
+
+        //chức năng: find by keyword
+        $("button").submit(function () {
+            //Note: hàm val(): lấy/thay đổi giá trị hiện tại của thẻ HTML
+            //val() sẽ lấy giá trị đầu tiên nếu THẺ đc chọn là một danh sách.
+
+            let keyword = $("#keyword").val();  //lấy giá trị ô input
+            $("table").empty(); //xóa table --> nhận lại kq --> tránh in ra lại giá trị đã có
+
+            //xu ly ajax
+            $.ajax({
+                url: "http://localhost:8080/v1/blog/api/find_by_keyword?keyword=" + keyword,
+                type: "GET",
+                dataType: "json",  //kieu data tra ve
+
+                success: function (data) {
+                    let arr = []; // server trả về mảng , mỗi phần tử <=> 1 object = 1 row (chứa thông tin đối tượng)
+                    for (let i = 0; i < data.length; i++) {  // chay loop --> in ra từng row ket qua
+                        arr.push("<tr>");
+                        arr.push("<td>" + (i + 1) + "</td>")
+                        arr.push("<td>" + data[i].id + "</td>")
+                        arr.push("<td>" + data[i].title + "</td>")
+                        arr.push("<td>" + data[i].createDate + "</td>")
+                        arr.push("<td>" + data[i].content + "</td>")
+                        arr.push("<td>" + data[i].category.name + "</td>")
+                        arr.push("</tr>")
+                    }
+                    //chèn ND vào table: append()
+                    $("table").append($(arr.join('')));  // chuyển mảng --> chuỗi
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>
