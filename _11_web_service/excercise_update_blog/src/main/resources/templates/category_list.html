@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<!--Thong bao-->
+<div th:if="${categoryList.isEmpty()}">
+    <p style="color: red">Chưa có danh mục nào. Nhấn Create để tạo mới</p>
+</div>
+<!--nút create-->
+<a class="btn btn-primary" th:href="@{/category/category_create}" role="button">Create new Category</a>
+
+<!--&lt;!&ndash;nút Search By Category&ndash;&gt;-->
+<!--<a class="btn btn-primary" href="@{blog/search_by_category}" role="button">Search Blog By Category</a>-->
+<div th:unless="${categoryList.isEmpty()}">
+    <table class="table">
+        <thead>
+        <tr>
+            <!--            <th scope="col">#</th>-->
+            <th scope="col">No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col" colspan="2">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categoryObj, loopStatus: ${categoryList}">
+            <td th:text="${loopStatus.count}"></td>
+            <td th:text="${categoryObj.id}"></td>
+            <td th:text="${categoryObj.name}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/category/category_edit/{id}(id=${categoryObj.id})}" role="button">Edit</a>
+                <a class="btn btn-primary" th:href="@{/category/category_delete/{id}(id=${categoryObj.id})}" role="button">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--    phân trang-->
+<!--    <div>-->
+<!--        &lt;!&ndash;    nút bấm&ndash;&gt;-->
+<!--&lt;!&ndash;        <a th:href="@{'category/list/'(page=${categoryList.number -1})}" th:if="${blogList.hasPrevious()}">Previous</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash;    3/5 trang: &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${blogList.number +1}"></span> / <span th:text="${blogList.totalPages}" ></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <a th:href="@{'blog/list/'(page=${blogList.number +1})}" th:if="${blogList.hasNext()}">Previous</a>&ndash;&gt;-->
+<!--    </div>-->
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog</title>
+    <style>
+        form {
+            width: 40%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container mt-3">
+    <div>
+        <h3>Create Blog</h3>
+        <a th:href="@{blog}">Back to home page</a>
+    </div>
+
+    <form th:action="@{/create}" th:object="${blogObj}" method="post">
+
+        <!-- Vertical -->
+        <div class="form-group">
+            <label for="name">Title</label>
+            <input th:field="*{title}" id="name" class="form-control" placeholder="Title"/>
+            <label for="createDate">Create Date</label>
+            <input type="date" id="createDate" th:field="*{createDate}" class="form-control" placeholder="Create Date">
+<!--            update: category-->
+            <label for="createDate">Category</label>
+            <select class="form-select" aria-label="Default select example" th:field="*{category.id}">
+                <option th:each="item:${categoryList}" th:text="${item.name}" th:value="${item.id}"></option>
+            </select>
+            <label for="content">Content</label>
+            <textarea th:field="*{content}" id="content" class="form-control" placeholder="Content" cols="30" rows="15"></textarea>
+
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
+        </div>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

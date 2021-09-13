@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search By Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<!--quay về trang chủ-->
+<div class="my-3">
+    <h3 style="color:blue;">Search By Title</h3>
+    <a th:href="@{/blog}">Back to home page</a>
+</div>
+<!--form-->
+<form action="/blog/search_by_title" method="post" th:object="${blogOjb}">
+    <div>
+        <label for="name">Title: </label>
+        <input th:field="*{title}" id="name" class="form-control"/>
+    </div>
+
+    <p><button type="submit" class="btn btn-primary mt-3">Search</button></p>
+</form>
+
+<!--hien thi ket qua-->
+<div th:if="${blogList != null}">
+    <table class="table">
+        <thead class="bg-light">
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Create Date</th>
+            <th scope="col">Category</th>
+
+            <th scope="col" colspan="3">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blogObj, loopStatus: ${blogList}">
+            <td th:text="${loopStatus.count}"></td>
+            <td th:text="${blogObj.id}"></td>
+            <td th:text="${blogObj.title}"></td>
+            <td th:text="${blogObj.createDate}"></td>
+            <td th:text="${blogObj.category.name}"></td>
+
+            <td>
+                <a class="btn btn-primary" th:href="@{/view/__${blogObj.id}__}" role="button">View</a>
+                <a class="btn btn-primary" th:href="@{/edit/{id}(id=${blogObj.id})}" role="button">Edit</a>
+                <a class="btn btn-primary" th:href="@{/delete/{id}(id=${blogObj.id})}" role="button">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
