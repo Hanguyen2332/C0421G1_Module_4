@@ -6,14 +6,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 <body>
+<h2 style="color: red;text-align: center">Blog Lảm Nhảm say hi!</h2>
 <!--form-->
-<form style="width: 30%;margin-top: 5px; display: inline-block">
-    <div>
+    <div style="width: 30%;margin-top: 5px;">
         <input id="keyword" class="form-control" placeholder="Enter keyword"/>
-        <button type="submit" class="btn btn-primary my-3">Search by keyword</button>
+        <button id="search" class="btn btn-primary my-3">Search by keyword</button>
     </div>
 
-</form>
 <!--hien thi ket qua-->
 <table class="table">
     <thead>
@@ -29,40 +28,76 @@
     <tbody>
     </tbody>
 </table>
-<button id="viewMore" class="btn btn-primary mt-3">View more</button>
+<button id="viewMore" class="btn btn-warning mt-3" style="margin-left: 40%" >View more</button>
 
 <!--code js-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
-<!--<script src="jquery/jquery-3.5.1.min.js"></script>-->
-<!--<script src="jquery/popper.min.js"></script>-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function () {
+
+        //chức năng: find by keyword
+        $("#search").click(function () {
+            console.log("search")
+            //Note: hàm val(): lấy/thay đổi giá trị hiện tại của thẻ HTML
+            //val() sẽ lấy giá trị đầu tiên nếu THẺ đc chọn là một danh sách.
+            let keyword = $("#keyword").val();
+            $(".table").empty();                //xóa table --> nhận lại kq --> tránh in ra lại giá trị đã có
+
+            //xu ly ajax
+                $.ajax({
+                    url: "http://localhost:8080/v1/blog/api/find_by_keyword?keyword=" + keyword,
+                    type: "GET",
+                    dataType: "json",  //kieu data tra ve
+
+                    success: function (response) {
+                        console.log(response)
+                        let arr = []; // server trả về mảng , mỗi phần tử <=> 1 object = 1 row (chứa thông tin đối tượng)
+                        for (let i = 0; i < response.length; i++) {  // chay loop --> in ra từng row ket qua
+                            arr.push("<tr>");
+                            arr.push("<td>" + (i + 1) + "</td>")
+                            arr.push("<td>" + response[i].id + "</td>")
+                            arr.push("<td>" + response[i].title + "</td>")
+                            arr.push("<td>" + response[i].createDate + "</td>")
+                            arr.push("<td>" + response[i].content + "</td>")
+                            arr.push("<td>" + response[i].category.name + "</td>")
+                            arr.push("</tr>")
+                        }
+                        //chèn ND vào table: append()
+                        $("table").append($(arr.join('')));  // chuyển mảng --> chuỗi
+                    }
+                })
+        });
+
         //hien thi list theo page :
-        //page đầu --> pageNumber = 0:
-        let page = 0
+        // page đầu --> pageNumber = 0:
+        var page = 0
+        var count = 1;  //in stt
 
         $.ajax({
-            url: "http://localhost:8080/v1/blog/api?page=" + page,
+            url: "http://localhost:8080/v1/blog/api/list?page=" + page,
             type: "GET",
+            dataType: "json",  //kieu data tra ve
 
-            success: function (data) {
-                // let resultContent = data.content;
+
+            success: function (data) {  //tra ve Pageable
+                console.log(data)
+                let arr = data.content; // chuyen Pageable --> mảng []
+
                 let blogList = "";
-                for (let i = 0; i < data.length; i++) {
+                for (let i = 0; i < arr.length; i++) {
                     blogList += "<tr>";
-                    blogList += "<td>" + (i + 1) + "</td>";
-                    blogList += "<td>" + data[i].id + "</td>";
-                    blogList += "<td>" + data[i].title + "</td>";
-                    blogList += "<td>" + data[i].createDate + "</td>";
-                    blogList += "<td>" + data[i].content + "</td>";
-                    category
-                    blogList += "<td>" + data[i].category.name + "</td>";
+                    blogList += "<td>" + (count++) + "</td>";
+                    blogList += "<td>" + arr[i].id + "</td>";
+                    blogList += "<td>" + arr[i].title + "</td>";
+                    blogList += "<td>" + arr[i].createDate + "</td>";
+                    blogList += "<td>" + arr[i].content + "</td>";
+                    blogList += "<td>" + arr[i].category.name + "</td>";
                     blogList += "</tr>";
                 }
-                $("table").append(blogList);
+                $(".table").append(blogList);
             },
             //xử lý trường hợp lỗi
             error: function (errorInfor) {
@@ -70,71 +105,41 @@
             }
         });
 
+
         //khi nhấn nút 'xem thêm:
         $('#viewMore').click(function () {
-            page++;  //tăng page lên 1  ==> page = 1
+            page ++;           //tăng page lên 1  ==> page = 1
+
             $.ajax({
-                url: "http://localhost:8080/v1/blog/api?page=" + page,  //gửi request --> web service
-                type: "GET",
-
-                success: function (data) {
-                    //nếu data = empty--> xử lý ntn?
-                    if (data.length === 0) {
-
-                    }
-
-                    let blogList = "";
-                    for (let i = 0; i < data.length; i++) {
-                        blogList += "<tr>";
-                        blogList += "<td>" + (i + 1) + "</td>";
-                        blogList += "<td>" + data[i].id + "</td>";
-                        blogList += "<td>" + data[i].title + "</td>";
-                        blogList += "<td>" + data[i].createDate + "</td>";
-                        blogList += "<td>" + data[i].content + "</td>";
-                        category
-                        blogList += "<td>" + data[i].category.name + "</td>";
-                        blogList += "</tr>";
-                    }
-                    $("table").append(blogList);
-                },
-                //nếu xảy ra lỗi
-                error: function (data) {
-                    console.log(data.content)
-                },
-            });
-        })
-
-
-        //chức năng: find by keyword
-        $("button").submit(function () {
-            //Note: hàm val(): lấy/thay đổi giá trị hiện tại của thẻ HTML
-            //val() sẽ lấy giá trị đầu tiên nếu THẺ đc chọn là một danh sách.
-
-            let keyword = $("#keyword").val();  //lấy giá trị ô input
-            $("table").empty(); //xóa table --> nhận lại kq --> tránh in ra lại giá trị đã có
-
-            //xu ly ajax
-            $.ajax({
-                url: "http://localhost:8080/v1/blog/api/find_by_keyword?keyword=" + keyword,
+                url: "http://localhost:8080//v1/blog/api/list?page=" + page,  //gửi request --> web service
                 type: "GET",
                 dataType: "json",  //kieu data tra ve
 
-                success: function (data) {
-                    let arr = []; // server trả về mảng , mỗi phần tử <=> 1 object = 1 row (chứa thông tin đối tượng)
-                    for (let i = 0; i < data.length; i++) {  // chay loop --> in ra từng row ket qua
-                        arr.push("<tr>");
-                        arr.push("<td>" + (i + 1) + "</td>")
-                        arr.push("<td>" + data[i].id + "</td>")
-                        arr.push("<td>" + data[i].title + "</td>")
-                        arr.push("<td>" + data[i].createDate + "</td>")
-                        arr.push("<td>" + data[i].content + "</td>")
-                        arr.push("<td>" + data[i].category.name + "</td>")
-                        arr.push("</tr>")
+
+                success: function (data) {  //server tra ve: Pageable
+                    let arr = data.content; // chuyen Pageable --> mảng []
+                    //nếu data = empty--> xử lý ntn?
+
+                    let blogList = "";
+                    for (let i = 0; i < arr.length; i++) {
+                        blogList += "<tr>";
+                        blogList += "<td>" + (count++) + "</td>";
+                        blogList += "<td>" + arr[i].id + "</td>";
+                        blogList += "<td>" + arr[i].title + "</td>";
+                        blogList += "<td>" + arr[i].createDate + "</td>";
+                        blogList += "<td>" + arr[i].content + "</td>";
+                        blogList += "<td>" + arr[i].category.name + "</td>";
+                        blogList += "</tr>";
                     }
-                    //chèn ND vào table: append()
-                    $("table").append($(arr.join('')));  // chuyển mảng --> chuỗi
-                }
-            })
+                    $("table").append(blogList);  // chèn - nối  thêm nội dung mới vào table
+                    // $("table").html(blogList); // chỉ in ra phần nội dung mới
+
+                },
+                //nếu xảy ra lỗi
+                error: function (errorInfor) {
+                    console.log("Error: " + errorInfor)
+                },
+            });
         })
     })
 </script>
