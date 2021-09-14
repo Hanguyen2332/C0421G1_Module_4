@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{login.title}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<h1 th:text="#{login.heading}"></h1>
+<form th:action="@{/create}" th:object="${userObj}" method="post">
+<div class="form-group w-25">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>Language</td>
+            <td>
+                <a href="/home?lang=en">English</a>| <a href="/home?lang=haw">Hawaii</a>
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{login.username_label}"></td>
+            <td><input th:field="*{userName}" class="form-control"></td>
+        </tr>
+        <tr>
+            <td th:text="#{login.password_label}"></td>
+            <td><input th:field="*{password}" class="form-control"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="form-control" th:value="#{login.submit_label}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</form>
+</body>
+</html>

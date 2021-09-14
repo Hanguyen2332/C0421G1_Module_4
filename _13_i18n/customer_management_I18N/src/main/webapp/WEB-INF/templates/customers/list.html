@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{list.title}"></title>
+  <style>
+    table {
+      border: 1px solid #000;
+    }
+
+    th, td {
+      border: 1px dotted #555;
+    }
+  </style>
+</head>
+<body>
+<span>Choose language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a> | <a href="?lang=it">Italian</a> </span><br>
+<span th:if="${keyword}">
+  <span th:text="#{list.search1}"> <code>"[[${keyword}]]"</code></span>, <a th:href="@{/customers}"><span th:text="#{list.search2}"></span> click here to clear</a>.<br>
+</span>
+<span th:text="#{list.result1}"></span> [[${customers.totalElements}]] <span th:text="#{list.result2}"></span>
+<form>
+  <label>
+    <span th:text="#{list.inputSearch}"></span>
+    <input type="text" name="s">
+  </label>
+  <input type="submit" th:value="#{list.button}">
+</form>
+<table>
+  <caption th:text="#{table.caption}"></caption>
+  <thead>
+  <tr>
+    <th th:text="#{table.th1}"></th>
+    <th th:text="#{table.th2}"></th>
+    <th th:text="#{table.th3}"></th>
+    <th th:text="#{table.th4}"></th>
+    <th th:text="#{table.th5}"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="c : ${customers}">
+    <td th:text="${c.id}"></td>
+    <td>
+      <a th:href="@{/customers/{id}(id=${c.id})}" th:text="${c.name}"></a>
+    </td>
+    <td th:text="${c.email}"></td>
+    <td th:text="${c.address}"></td>
+    <td th:text="${c.province?.name}"></td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <a th:if="${customers.hasPrevious()}"
+     th:href="@{'/customers'(page=${customers.number - 1}, size=${customers.size}, s=${keyword})}">
+    Previous
+  </a>
+  [[${customers.number + 1}]]/[[${customers.totalPages}]]
+  <a th:if="${customers.hasNext()}"
+     th:href="@{'/customers'(page=${customers.number + 1}, size=${customers.size}, s=${keyword})}">
+    Next
+  </a>
+</div>
+</body>
+</html>
