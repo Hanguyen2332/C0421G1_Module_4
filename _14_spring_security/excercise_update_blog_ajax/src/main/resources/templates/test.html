@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<h2 style="color: red;text-align: center">Blog Lảm Nhảm say hi!</h2>
+<!--form-->
+<div style="width: 30%;margin-top: 5px;">
+    <input id="keyword" class="form-control" placeholder="Enter keyword"/>
+    <button id="search" class="btn btn-primary my-3">Search by keyword</button>
+</div>
+
+<!--hien thi ket qua-->
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">No</th>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Create Date</th>
+        <th scope="col">Content</th>
+        <th scope="col">Category</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+
+    <!--    <tbody th:each="item, loopStatus:${blogList}">-->
+    <!--    <tr>-->
+    <!--        <td th:text="${loopStatus.count}"></td>-->
+    <!--        <td th:text="${item.id}"></td>-->
+    <!--        <td th:text="${item.title}"></td>-->
+    <!--        <td th:text="${item.createDate}"></td>-->
+    <!--        <td th:text="${item.content}"></td>-->
+    <!--        <td th:text="${item.category.name}"></td>-->
+    <!--        <td >-->
+    <!--            <button th:attr="onclick=|seeDetail('${item.id}', '${item.title}', '${item.createDate}', '${item.content}', '${item.category.name}')|"-->
+    <!--                     th:id="${item.id}" type = "button" class="btn btn-danger view" id="view" data-target="#exampleModal" data-toggle="modal">View</button>-->
+    <!--        </td>-->
+    <!--    </tr>-->
+
+    <!--    </tbody>-->
+</table>
+<button id="viewMore" class="btn btn-warning mt-3" style="margin-left: 40%">View more</button>
+<!--modal-->
+<div class="modal" tabindex="-1" id="exampleModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color: blue">User detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Create Date</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Category</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tableDetail">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--&lt;!&ndash;modal&ndash;&gt;-->
+<!--<div class="modal" tabindex="-1" id="exampleModal">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" style="color: blue">User detail</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <table class="table" border="1">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                       <input type="hidden" id="0" >-->
+<!--                        <th scope="col">Title</th>-->
+<!--                        <th scope="col">Create Date</th>-->
+<!--                        <th scope="col">Content</th>-->
+<!--                        <th scope="col">Category</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody class="tableDetail">-->
+<!--                    <td id="1"></td>-->
+<!--                    <td id="2"></td>-->
+<!--                    <td id="3"></td>-->
+<!--                    <td id="4"></td>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function seeDetail(id,title,createDate,content,category) {-->
+<!--        document.getElementById("0").innerText = id;-->
+<!--        document.getElementById("1").innerText = title;-->
+<!--        document.getElementById("2").innerText = createDate;-->
+<!--        document.getElementById("3").innerText = content;-->
+<!--        document.getElementById("4").innerText = category;-->
+<!--    }-->
+<!--</script>-->
+<!--code js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        //chức năng: find by keyword
+        $("#search").click(function () {
+            console.log("search")
+            //Note: hàm val(): lấy/thay đổi giá trị hiện tại của thẻ HTML
+            //val() sẽ lấy giá trị đầu tiên nếu THẺ đc chọn là một danh sách.
+            let keyword = $("#keyword").val();
+            $(".table").empty();                //xóa table --> nhận lại kq --> tránh in ra lại giá trị đã có
+
+            //xu ly ajax
+            $.ajax({
+                url: "http://localhost:8080/v1/blog/api/find_by_keyword?keyword=" + keyword,
+                type: "GET",
+                dataType: "json",  //kieu data tra ve
+
+                success: function (response) {
+                    console.log(response)
+                    let arr = []; // server trả về mảng , mỗi phần tử <=> 1 object = 1 row (chứa thông tin đối tượng)
+                    for (let i = 0; i < response.length; i++) {  // chay loop --> in ra từng row ket qua
+                        arr.push("<tr>");
+                        arr.push("<td>" + (i + 1) + "</td>")
+                        arr.push("<td>" + response[i].id + "</td>")
+                        arr.push("<td>" + response[i].title + "</td>")
+                        arr.push("<td>" + response[i].createDate + "</td>")
+                        arr.push("<td>" + response[i].content + "</td>")
+                        arr.push("<td>" + response[i].category.name + "</td>")
+                        arr.push("</tr>")
+                    }
+                    //chèn ND vào table: append()
+                    $("table").append($(arr.join('')));  // chuyển mảng --> chuỗi
+                }
+            })
+        });
+
+        //hien thi list theo page :
+        // page đầu --> pageNumber = 0:
+        var page = 0
+        var count = 1;  //in stt
+
+        $.ajax({
+            url: "http://localhost:8080/v1/blog/api/list?page=" + page,
+            type: "GET",
+            dataType: "json",  //kieu data tra ve
+
+
+            success: function (data) {  //tra ve Pageable
+                console.log(data)
+                let arr = data.content; // chuyen Pageable --> mảng []
+
+                let blogList = "";
+                for (let i = 0; i < arr.length; i++) {
+                    blogList += "<tr>";
+                    blogList += "<td>" + (count++) + "</td>";
+                    blogList += "<td>" + arr[i].id + "</td>";
+                    blogList += "<td>" + arr[i].title + "</td>";
+                    blogList += "<td>" + arr[i].createDate + "</td>";
+                    blogList += "<td>" + arr[i].content + "</td>";
+                    blogList += "<td>" + arr[i].category.name + "</td>";
+                    blogList +=
+                        "<td>" +
+                        '<button value="' + arr[i].id + '" type = "button" class="btn btn-danger view" id="view" data-target="#exampleModal" data-toggle="modal">' + 'View' +
+                        '</button>' +
+                        "</td > ";
+                    blogList += "</tr>";
+                }
+                $(".table").append(blogList);
+            },
+            //xử lý trường hợp lỗi
+            error: function (errorInfor) {
+                console.log("Error: " + errorInfor);
+            }
+        });
+
+
+        //khi nhấn nút 'xem thêm:
+        $('#viewMore').click(function () {
+            page++;           //tăng page lên 1  ==> page = 1
+
+            $.ajax({
+                url: "http://localhost:8080//v1/blog/api/list?page=" + page,  //gửi request --> web service
+                type: "GET",
+                dataType: "json",  //kieu data tra ve
+
+
+                success: function (data) {  //server tra ve: Pageable
+                    let arr = data.content; // chuyen Pageable --> mảng []
+                    //nếu data = empty--> xử lý ntn?
+
+                    let blogList = "";
+                    for (let i = 0; i < arr.length; i++) {
+                        blogList += "<tr>";
+                        blogList += "<td>" + (count++) + "</td>";
+                        blogList += "<td>" + arr[i].id + "</td>";
+                        blogList += "<td>" + arr[i].title + "</td>";
+                        blogList += "<td>" + arr[i].createDate + "</td>";
+                        blogList += "<td>" + arr[i].content + "</td>";
+                        blogList += "<td>" + arr[i].category.name + "</td>";
+                        blogList +=
+                            "<td>" +
+                            '<button value="' + arr[i].id + '" type = "button" class="btn btn-danger view" data-target="#exampleModal" data-toggle="modal">' + 'View' +
+                            '</button>' +
+                            "</td > ";
+                        blogList += "</tr>";
+                    }
+                    $(".table").append(blogList);  // chèn - nối  thêm nội dung mới vào table
+                    // $("table").html(blogList); // chỉ in ra phần nội dung mới
+
+                },
+                //nếu xảy ra lỗi
+                error: function (errorInfor) {
+                    console.log("Error: " + errorInfor)
+                },
+            });
+        })
+
+        //xem chi tiết:
+        $(document).on('click','.view',function () {   // nếu dùng selector = class --> syntax: $(document).on('click','.view',function () {...}
+            let id = $(this).val();
+            console.log("id: " + id)
+
+            //gọi ajax:
+            $.ajax({
+                url: "http://localhost:8080//v1/blog/api/find_by_id?id=" + id,
+                type: "GET",
+                dataType: "Json",
+
+                success: function (data) {
+                    console.log("id: " + data)
+
+                    let result = "";
+                    result += "<tr>";
+                    result += "<td>" + data.title + "</td>";
+                    result += "<td>" + data.createDate + "</td>";
+                    result += "<td>" + data.content + "</td>";
+                    result += "<td>" + data.category.name + "</td>";
+                    result += "</tr>";
+
+                    $(".tableDetail").empty();
+
+                    $(".tableDetail").append(result);
+                }
+            })
+        })
+    })
+
+</script>
+</body>
+</html>
