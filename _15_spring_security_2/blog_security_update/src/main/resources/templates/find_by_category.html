@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search By Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<!--quay về trang chủ-->
+<div class="my-3">
+    <h3 style="color:blue;">Search By Category</h3>
+    <a th:href="@{/blog/list}">Back to home page</a>
+</div>
+<!--form-->
+<form action="/blog/search_by_category" method="post" th:object="${category}">
+    <div>
+        <label >Select Category:</label>
+        <select class="form-select" aria-label="Default select example" th:field="*{id}">
+        <option th:each="item:${categoryList}" th:text="${item.name}" th:value="${item.id}"></option>
+    </select>
+    </div>
+
+    <p><button type="submit" class="btn btn-primary mt-3">Search</button></p>
+</form>
+
+<!--hien thi ket qua-->
+<div th:if="${blogList != null}">
+        <table class="table">
+            <thead class="bg-light">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Create Date</th>
+                <th scope="col" colspan="3">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="blogObj, loopStatus: ${blogList}">
+                <td th:text="${loopStatus.count}"></td>
+                <td th:text="${blogObj.id}"></td>
+                <td th:text="${blogObj.title}"></td>
+                <td th:text="${blogObj.createDate}"></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/blog/view/__${blogObj.id}__}" role="button">View</a>
+                    <a class="btn btn-primary" sec:authorize="hasRole('ADMIN')" th:href="@{/blog/edit/{id}(id=${blogObj.id})}" role="button">Edit</a>
+                    <a class="btn btn-primary" sec:authorize="hasRole('ADMIN')" th:href="@{/blog/delete/{id}(id=${blogObj.id})}" role="button">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

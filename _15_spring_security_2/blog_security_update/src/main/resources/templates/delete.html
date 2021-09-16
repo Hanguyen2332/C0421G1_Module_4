@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Blog</title>
+    <style>
+        form {
+            width: 40%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container mt-3">
+    <div>
+        <h3>Delete Blog</h3>
+        <a th:href="@{/blog/list}">Back to home page</a>
+    </div>
+
+    <form th:action="@{/delete}" th:object="${blogObj}" method="post">
+
+        <!-- Vertical -->
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}" th:value="${blogObj.id}" readonly/>
+            <label for="name">Title</label>
+            <input th:field="*{title}" id="name" class="form-control" th:text="${blogObj.title}" readonly/>
+            <label for="createDate">Create Date</label>
+            <input type="date" id="createDate" th:field="*{createDate}" th:text="${blogObj.createDate}" class="form-control" readonly>
+<!--            update-->
+            <label for="Category">Category</label>
+            <input type="date" id="Category" th:field="*{category}" th:text="${blogObj.category.name}" class="form-control" readonly>
+
+            <label for="content">Content</label>
+            <textarea th:field="*{content}" th:text="${blogObj.content}" id="content" class="form-control" cols="30" rows="15" readonly></textarea>
+
+            <button type="submit" class="btn btn-primary mt-3">Delete</button>
+        </div>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
