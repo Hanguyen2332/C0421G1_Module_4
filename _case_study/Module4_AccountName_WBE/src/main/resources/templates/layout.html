@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style th:fragment="font">
+        body {
+            /*"Times New Roman", Times, serif;*/
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        #textWhite a {
+            color: white !important;
+        }
+
+        .dropdown-item:hover {
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+
+<body>
+<!--home: welcome-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="welcome">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <h1 style="color: darkorange">Welcome to Furama Resort <span class="sr-only">(current)</span>
+                </h1>
+            </li>
+        </ul>
+        <span sec:authorize="isAuthenticated()">
+             <span class="navbar-text" sec:authentication="name" style="margin-right: 3px;color: orange;font-weight: bold"> </span>
+        <span class="navbar-text"><a href="/logout" class="btn btn-outline-warning">Logout</a></span>
+        </span>
+    </div>
+</nav>
+
+
+<!--nav bar: logo-->
+<div class="row mt-3 mx-3" th:fragment="logo">
+    <div class="col-md-4 ">
+        <img src="/image/logo.png" height="100"/></div>
+    <div class="col-md-4">
+        <p>
+            <span style="color:dodgerblue">Địa chỉ:</span>
+            103 – 105 Đường Võ Nguyên Giáp, Phường Khuê Mỹ, Quận Ngũ hành Sơn, Tp. Đà Nẵng, Việt Nam
+            7.0 km từ Sân bay Quốc tế Đà Nẵng
+        </p>
+    </div>
+    <div class="col-md-4">
+        <p><span style="color: dodgerblue">Phone:</span> 84-236-3847 333/888</p>
+        <p>
+            <span style="color: dodgerblue">Email:</span> reservation@furamavietnam.com
+        </p>
+    </div>
+</div>
+
+<!--navbar: điều hướng - sticky  // Chưa tạo link request (thẻ a) .fixed-bottom: nav cuois trang-->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light sticky-top mt-3"
+     style="background-color: teal;font-weight: bolder">
+    <a class="navbar-brand" th:href="@{/}">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto position-sticky" id="textWhite" style="top: 200px">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/customer}">CUSTOMER <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/service}">SERVICE <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/employee}">EMPLOYEE <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    CONTRACT <span class="sr-only">(current)</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: teal">
+                    <a class="dropdown-item" th:href="@{/contract/contract/create}">Create new Contract</a>
+                    <a class="dropdown-item" th:href="@{/contract/con_detail/create}">Create new Contract Detail</a>
+                    <a class="dropdown-item" th:href="@{/contract/find}">View List Customer</a>
+                </div>
+            </li>
+            <!--            -->
+            <!--            <li class="nav-item active">-->
+            <!--                <a class="nav-link" th:href="@{/contract}">CONTRACT <span class="sr-only">(current)</span></a>-->
+            <!--            </li>-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2 bg-white btn-warning" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<!--chan trang-->
+<!--footer-->
+<footer class="mt-3 pt-2 text-center" style="background-color: lightblue;margin-bottom: 40px" id="footer">
+    <h3 style="color: #c82333;">Liên hệ</h3>
+    <ul style="list-style-type: none">
+        <li>103 - 105 Vo Nguyen Giap Street, Khue My Ward, Ngu Hanh Son District, Danang City, Vietnam</li>
+        <li>Tel.: 84-236-3847 333/888 * Fax: 84-236-3847 666</li>
+        <li>Email: reservation@furamavietnam.com * www.furamavietnam.com</li>
+    </ul>
+</footer>
+<!--tuyên truyền-->
+
+<nav class="justify-content-center fixed-bottom mt-3 font-weight-bold" id="tuyenTruyen"
+     style="background-color:teal; color:white;text-align: center;height: 40px">
+  <span class="navbar-text">
+ COVID 19 UPDATE: The safety and well-being are our utmost priority
+  </span>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

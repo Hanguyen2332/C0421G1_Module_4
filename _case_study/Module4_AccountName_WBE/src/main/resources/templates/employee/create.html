@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style th:insert="/layout::font">
+    </style>
+    <style>
+        .message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!--home: welcome-->
+<div th:replace="~{/layout::welcome}"></div>
+<div th:replace="~{/layout::navbar}"></div>
+
+<div class="container mt-3">
+    <a href="/employee">Back to Home Page</a>
+
+    <form th:action="@{/employee/create}" th:object="${empDtoObj}" method="post">
+        <div class="form-group">
+            <table class="w-50 m-auto">
+                <tr>
+                    <td></td>
+                    <td>
+                        <h3 style="text-align: center;color: blue">Create new Employee</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input th:field="*{name}" class="form-control"/>
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Date of birth:</td>
+                    <td>
+                        <input type="date" th:field="*{dayOfBirth}" class="form-control" id="dayOfBirth"/>
+                        <div class="message" id="dateMess"></div>
+                        <div th:if="${#fields.hasErrors('dayOfBirth')}" th:errors="*{dayOfBirth}" class="message"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ID Card</td>
+                    <td>
+                        <input th:field="*{idCard}" class="form-control"/>
+                        <div th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}" class="message"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input th:field="*{email}" class="form-control"/>
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="message"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>
+                        <input th:field="*{phone}" class="form-control"/>
+                        <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="message"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Salary:</td>
+                    <td>
+                        <input th:field="*{salary}" class="form-control" oninput="checkSalary()" id="salary"/>
+                        <div id="salaryMess" class="message"></div>
+<!--                        <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="message"></div>-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        <input th:field="*{address}" class="form-control"/>
+                        <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="message"></div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>Division:</td>
+                    <td>
+                        <select th:field="*{division}" class="custom-select"/>
+                        <option th:each="item:${divisionList}" th:value="${item.id}"
+                                th:text="${item.name}"></option>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Position:</td>
+                    <td>
+                        <select th:field="*{position}" class="custom-select"/>
+                        <option th:each="item:${positionList}" th:value="${item.id}"
+                                th:text="${item.name}"></option>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Edu Degree:</td>
+                    <td>
+                        <select th:field="*{eduDegree}" class="custom-select"/>
+                        <option th:each="item:${eduDegreeList}" th:value="${item.id}"
+                                th:text="${item.name}"></option>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input th:field="*{user.userName}" class="form-control"/>
+                        <div th:if="${#fields.hasErrors('user')}" th:errors="*{user}" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-primary mt-3" oninput="return checkFormEmloyee()">Create</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </form>
+    <script>
+        function checkFormEmloyee() {
+            let check = true;
+            let date = document.getElementById("dayOfBirth").value;
+            if (date == '') {
+                document.getElementById("dayMess").innerText = "Không bỏ trống trường này"
+                check = false;
+            }
+            let salary = document.getElementById("salary").value;
+            if (salary <= 0 || isNaN(salary)) {
+                document.getElementById("salaryMess").innerText = "Vui lòng nhập số dương"
+                check = false;
+            }
+            return check;
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous">
+    </script>
+</body>
+</html>

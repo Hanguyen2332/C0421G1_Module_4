@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Service</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style th:insert="/layout::font">
+    </style>
+    <style>
+        .message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!--home: welcome-->
+<div th:replace="~{/layout::welcome}"></div>
+<div th:replace="~{/layout::navbar}"></div>
+
+<div class="container mt-3">
+    <a href="/customer">Back to Home Page</a>
+
+    <form th:action="@{/service/edit}" th:object="${serDtoObj}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group">
+            <table class="w-50 m-auto">
+                <tr>
+                    <td></td>
+                    <td>
+                        <h3 style="text-align: center;color: blue">Edit new Service</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Service name:</td>
+                    <td>
+                        <input th:field="*{serviceName}" class="form-control" id="name" oninput="checkName()"/>
+                        <div id="nameMess" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Code:</td>
+                    <td>
+                        <input th:field="*{code}" class="form-control" id="code"/>
+                        <div id="codeMess" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Area:</td>
+                    <td>
+                        <input th:field="*{area}" class="form-control" id="area"/>
+                        <div id="areaMess" class="message"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Floor</td>
+                    <td>
+                        <input type="number" th:field="*{floors}" class="form-control" id="floor"/>
+                        <div id="floorMess" class="message"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Max people:</td>
+                    <td>
+                        <input th:field="*{maxPeople}" class="form-control" id="maxPeople"/>
+                        <div id="maxPeopleMess" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Pool area:</td>
+                    <td>
+                        <input th:field="*{poolArea}" class="form-control" id="poolArea"/>
+                        <div id="poolAreaMess" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Standard room</td>
+                    <td>
+                        <input th:field="*{standardRoom}" class="form-control"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Rent type:</td>
+                    <td>
+                        <select th:field="*{rentType}" class="custom-select"/>
+                        <option th:each="item:${rentTyeList}" th:value="${item.id}"
+                                th:text="${item.rentTypeName}"></option>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Service type:</td>
+                    <td>
+                        <select th:field="*{serviceType}" class="custom-select"/>
+                        <option th:each="item:${serviceTypeList}" th:value="${item.id}"
+                                th:text="${item.serviceTypeName}"></option>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Other convenience</td>
+                    <td>
+                        <input th:field="*{otherConvenienceDes}" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td>
+                        <input th:field="*{cost}" class="form-control" id="price"/>
+                        <div id="priceMess" class="message"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-primary mt-3" onclick="return validateForm()">Edit
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </form>
+</div>
+
+<!--    validate-->
+<script src="/validation.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>
